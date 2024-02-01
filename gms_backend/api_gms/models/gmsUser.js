@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const schema = mongoose.Schema(
-    {
+    {   
+        id:Number,
         username:String,
         password:String,
         email:String,
-        dob:Date,
         mobileno:Number,
         city:String,
     }
