@@ -8,6 +8,7 @@ const schema = mongoose.Schema(
         email:String,
         mobileno:Number,
         city:String,
+        role:String,
     }
 )
 
