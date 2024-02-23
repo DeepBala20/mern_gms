@@ -41,7 +41,7 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
         //add user
         app.post('/user/add',async(req,res)=>{
             const user = new GmsUser({
-                uid:req.body.id,
+                uid:req.body.uid,
                 role:req.body.role,
                 username : req.body.username,
                 password : req.body.password,
