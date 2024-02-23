@@ -26,10 +26,22 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
             res.send(grocery);
         });
 
+        //get user by id 
+        app.get('/user/:id',async (req,res)=>{
+            const user = await GmsUser.findOne({uid:req.params.id})
+            res.send(user);
+        })
+      
+        //get user by id 
+        app.get('/grocery/:id',async (req,res)=>{
+            const grocery = await GmsGroce.findOne({pid:req.params.id})
+            res.send(grocery);
+        })
+
         //add user
         app.post('/user/add',async(req,res)=>{
             const user = new GmsUser({
-                id:req.body.id,
+                uid:req.body.id,
                 role:req.body.role,
                 username : req.body.username,
                 password : req.body.password,
@@ -52,6 +64,44 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
             })
             await grocery.save()
             res.send(grocery)
+        });
+
+        //edit user
+        app.patch('/user/:id',async(req,res)=>{
+            try{
+                const user = await GmsUser.findOne({uid:req.params.id})
+                user.uid = req.body.uid;
+                user.role=req.body.role;
+                user.username = req.body.username;
+                user.password = req.body.password;
+                user.email=req.body.email;
+                user.mobileno=req.body.mobileno;
+                user.city=req.body.city;
+                await user.save()
+                res.send(user)
+            }
+            catch{
+                res.status(404)
+                res.send({error: "user not exists!"})
+            }
+        });
+
+        //edit grocery
+        app.patch('/grocery/:id',async(req,res)=>{
+            try{
+                const grocery = await GmsGroce.findOne({pid:req.params.id})
+                grocery.pid=req.body.pid,
+                grocery.pname=req.body.pname,
+                grocery.price=req.body.price,
+                grocery.category=req.body.category,
+                grocery.img=req.body.img,
+                await grocery.save()
+                res.send(grocery)
+            }
+            catch{
+                res.status(404)
+                res.send({error: "user not exists!"})
+            }
         });
 
         //delete user
