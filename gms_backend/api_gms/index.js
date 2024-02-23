@@ -52,7 +52,56 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
             })
             await grocery.save()
             res.send(grocery)
+        });
+
+        //delete user
+        app.delete('/user/:id',async(req,res)=>{
+            try{
+                 users = await GmsUser.findOne({uid:req.params.id});
+                console.log(users)
+                await users.deleteOne()
+                res.send(users)
+           }catch{
+                res.status(404)
+                res.send({error: "User Not Exists!"})
+           }
         })
+
+        //delete Grocery
+        app.delete('/grocery/:id',async(req,res)=>{ 
+            try{
+               groceries = await GmsGroce.findOne({pid:req.params.id});
+               console.log(groceries)
+               await groceries.deleteOne()
+               res.send(groceries)
+            }catch{
+               res.status(404)
+               res.send({error: "Product Not Exists!"})
+            }
+        })
+
+        //login
+        app.post('/user/login', async (req, res) => {
+            const { username, password } = req.body;
+        
+            // Find user by username
+            const user = await GmsUser.findOne({username:{$eq:username}});
+
+        
+            if (!user) {
+                const errorMessage = 'User not found';
+                console.log(errorMessage);
+                return res.status(404).json({ message: errorMessage });
+            }
+        
+            // Check if password is correct
+            if (user.password !== password) {
+                return res.status(401).json({ message: 'Invalid password' });
+            }
+        
+            // Return user data on successful login
+            return res.status(200).json({ message: 'Login successful', user });
+        });
     
     }
 ).catch();

@@ -15,14 +15,8 @@ export default function Header() {
         <Link to='/'>
           <li className='hover:underline text-slate-100'>Home</li>
         </Link>
-        <Link to='/about'>
-          <li className='hover:underline text-slate-100'>About & contact</li>
-        </Link>
         <Link to='/sign-in'>
           <li className='hover:underline text-slate-100'>Sign-in</li>
-        </Link>
-        <Link to='/profile'>
-          <li className='hover:underline text-slate-100'>Profile</li>
         </Link>
       </ul>
       </div>
