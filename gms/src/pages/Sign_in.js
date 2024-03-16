@@ -14,7 +14,7 @@ export default function Sign_in() {
 
 
   return (
-    <div className="m-10 p-6 flex justify-between  bg-yellow-100">
+    <div className="m-10 p-6 flex justify-between  bg-yellow-100" id="sign-in_page">
       <div className="w-4/6">
       <div className=" text-4xl font-bold font-mono text-center">
         SIGN - IN
@@ -37,13 +37,13 @@ export default function Sign_in() {
                 onChange={(e)=>{setUser({...user,password:e.target.value})}}
             ></input>
           </div>
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <label className="text-gray-700 text-3xl font-bold mb-2 mr-5">Role :</label>
             <input id="admin" type="radio" name="role" value={"admin"} className="mr-5"/>
             <label for="admin" className="text-gray-700 text-3xl font-bold mb-2 mr-5">admin</label>
             <input id="user" type="radio" name="role" value={"user"} className="mr-5"/>            
             <label for="user" className="text-gray-700 text-3xl font-bold mb-2 mr-5">user</label>
-          </div>
+          </div> */}
           <div className="flex items-center justify-center">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow" type="button"
               onClick={()=>{
@@ -70,7 +70,7 @@ export default function Sign_in() {
                       text: res.message,
                       footer: '<a href="#">Why do I have this issue?</a>'
                     });
-                    nav('/sign-in');
+                    nav('/');
                   }
                 })
             }}

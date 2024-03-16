@@ -1,4 +1,4 @@
-const { configDotenv } = require('dotenv');
+
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 const cors = require('cors');
 const GmsUser = require('./models/gmsUser');
 const GmsGroce = require('./models/gmsGroce');
+const Category = require('./models/category');
 mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mongodb.net/?retryWrites=true&w=majority")
 .then(
     ()=>{
@@ -26,6 +27,12 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
             res.send(grocery);
         });
 
+        //getall category
+        app.get('/category',async(req,res)=>{
+            category = await Category.find();
+            res.send(category);
+        })
+
         //get user by id 
         app.get('/user/:id',async (req,res)=>{
             const user = await GmsUser.findOne({uid:req.params.id})
@@ -36,6 +43,12 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
         app.get('/grocery/:id',async (req,res)=>{
             const grocery = await GmsGroce.findOne({pid:req.params.id})
             res.send(grocery);
+        })
+
+        //get category by id
+        app.get('/category/:id',async(req,res)=>{
+            const category = await Category.findOne({cid:req.params.id})
+            res.send(category);
         })
 
         //add user
@@ -65,6 +78,16 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
             await grocery.save()
             res.send(grocery)
         });
+
+        //add category
+        app.post('/category/add',async(req,res)=>{
+            const category = new Category({
+                cid:req.body.cid,
+                category:req.body.category
+            })
+            await category.save()
+            res.send(category)
+        })
 
         //edit user
         app.patch('/user/:id',async(req,res)=>{
@@ -104,6 +127,21 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
             }
         });
 
+        //edit category
+        app.patch('/category/:id',async(req,res)=>{
+            try{
+                const category = await Category.findOne({cid:req.params.id})
+                category.cid=req.body.cid,
+                category.category=req.body.category
+                await category.save()
+                res.send(category)
+            }
+            catch{
+                res.send(404)
+                res.send({error:"category not exists!"})
+            }
+        })
+
         //delete user
         app.delete('/user/:id',async(req,res)=>{
             try{
@@ -130,6 +168,20 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
             }
         })
 
+        //delete category
+        app.delete('/category/:id',async(req,res)=>{
+            try {
+                category = await Category.findOne({cid:req.params.id})
+                console.log(category)
+                await category.deleteOne()
+                res.send(category)
+            }
+            catch{
+                res.status(404)
+                res.send({error: "category not exists!"})
+            }
+        })
+
         //login
         app.post('/user/login', async (req, res) => {
             const { username, password } = req.body;
@@ -145,7 +197,7 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
             }
         
             // Check if password is correct
-            if (user.password !== password) {
+            if (user.password.toLowerCase() !== password.toLowerCase()) {
                 return res.status(401).json({ message: 'Invalid password' });
             }
         

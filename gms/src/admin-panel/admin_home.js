@@ -17,7 +17,7 @@ export default function Admin_home() {
         </div>
       </header>
       <div className="flex flex-wrap m-28 justify-between" >
-        <div className="w-1/5 h-96 hover:scale-110">
+        <div className="w-1/6 h-96 hover:scale-110">
           <div className="w-4/5 h-4/6 border m-auto mt-5 rounded-3xl">
               <img src="assets/all_grocery.jpg" className="border rounded-3xl" style={{height:"100%",width:"100%"}}/>
           </div>
@@ -25,7 +25,7 @@ export default function Admin_home() {
           <button type="button" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 w-full mt-10">All Grocery</button>
           </Link>
         </div>
-        <div className="w-1/5 h-96 rounded-3xl hover:scale-110">
+        <div className="w-1/6 h-96 rounded-3xl hover:scale-110">
           <div className="w-4/5 h-4/6 border m-auto mt-5 rounded-3xl">
               <img src="assets/add_grocery.jpg" className="border rounded-3xl" style={{height:"100%",width:"100%"}}/>
           </div>
@@ -33,7 +33,7 @@ export default function Admin_home() {
           <button type="button" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 w-full mt-10">Add Grocery</button>
           </Link>
         </div>
-        <div className="w-1/5 h-96 hover:scale-110">
+        <div className="w-1/6 h-96 hover:scale-110">
           <div className="w-4/5 h-4/6 border m-auto mt-5 rounded-3xl">
               <img src="assets/all_staff.jpg" className="border rounded-3xl" style={{height:"100%",width:"100%"}}/>
           </div>
@@ -41,12 +41,20 @@ export default function Admin_home() {
           <button type="button" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 w-full mt-10">All Users</button>
           </Link>
         </div>
-        <div className="w-1/5 h-96 hover:scale-110">
+        <div className="w-1/6 h-96 hover:scale-110">
           <div className="w-4/5 h-4/6 border m-auto mt-5 rounded-3xl">
               <img src="assets/add_staff.jpg" className="border rounded-3xl" style={{height:"100%",width:"100%"}}/>
           </div>
           <Link to={'/add-user'}>
           <button type="button" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 w-full mt-10">Add User</button>
+          </Link>
+        </div>
+        <div className="w-1/6 h-96 hover:scale-110">
+          <div className="w-4/5 h-4/6 border m-auto mt-5 rounded-3xl">
+              <img src="assets/all_grocery.jpg" className="border rounded-3xl" style={{height:"100%",width:"100%"}}/>
+          </div>
+          <Link to={'/all-category'}>
+          <button type="button" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center me-2 mb-2 w-full mt-10">Categories</button>
           </Link>
         </div>
       </div>

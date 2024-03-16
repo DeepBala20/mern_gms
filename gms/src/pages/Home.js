@@ -1,16 +1,39 @@
 import React from 'react'
 import Header from '../components/Header'
+import Features from './Features'
+import Homeproduct from './Homeproduct'
+import ProdCategory from '../components/Prod_Category'
 
 export default function Home() {
   return (
     <>
     <Header/>
-    <div className='bg my-0'>
+    <div className='bg my-0 mt-16' id='home' style={{backgroundSize:"100% 80vh"}}>
       <p className='text-center text-green-950 text-2xl font-serif pt-40 pl-10 pr-96'>
       A grocery store is another form of retailing, primarily focusing on selling food, along with non-food household products, such as bathroom or cleaning products, to their consumers. Generally, most grocery stores will carry canned items, fish, dairy products, raw and prepared meats, baked products, fresh and frozen fruits and vegetables, and many different snacks.1 Larger grocery stores, also known as supermarkets, can carry non-food products, such as clothing and household items due to the immense amount of space they occupy and their large profit allowing them to reach a more diverse consumer market, also allowing for consumers to find all their needs in one area.  Depending on their geographic concentration, grocery stores will vary in size and products they will carry to fit and satisfy their consumer’s needs.  Some examples of grocery stores or supermarket that excel in this category are Loblaw’s, Metro and Sobeys.
       </p>
-      
-        <div className='mt-40 text-center  w-full text-6xl font-bold text-teal-800 '>Food Store</div>
+    </div>
+    <Features/>
+    <Homeproduct/>
+    <ProdCategory/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {/* <div className='mt-40 text-center  w-full text-6xl font-bold text-teal-800 '>Food Store</div>
         <div className='flex mt-10 justify-evenly'>
           <div className='bg-slate-400 border w-1/5'><img style={{width:"100%",height:"100%"}} src='assets/masalamasti.jpeg' /></div>
           <div className='bg-slate-400 border w-1/5' ><img style={{width:"100%",height:"100%"}} src='assets/breakfast.jpeg' />  </div>
@@ -49,15 +72,18 @@ export default function Home() {
           <div className=' w-1/8' ><img  src='assets/dilivery.jpg' /><br/>FREE<br/>Delivery  </div>
           <div className=' w-1/8' ><img  src='assets/time.jpg' /><br/>ON TIME<br/>Guarantee </div>
           <div className=' w-1/8' ><img  src='assets/return.jpg' /><br/>NO QUESTIONS ASKED<br/>Return Policy</div>
-        </div>
+        </div> */}
 
-        <div>
+
+
+ 
+        {/* <div>
           <div className='mt-20 text-center text-6xl font-bold text-teal-800 bg-slate-300'>
               Happy Shoping
           </div>
-        </div>
+        </div> */}
 
-    </div>
+    
     </> 
   )
 }
