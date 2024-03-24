@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const cart = require('./cart');
 
 const schema = mongoose.Schema(
     {   
@@ -8,7 +9,7 @@ const schema = mongoose.Schema(
         email:String,
         mobileno:Number,
         city:String,
-        role:String,
+        role:String
     }
 )
 

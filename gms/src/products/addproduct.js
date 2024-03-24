@@ -94,7 +94,7 @@ function Product(){
                                             headers:{"content-type":"application/json"}
                                         })
                                     .then((res)=>{
-                                        nav('/all-grocery/all-product')
+                                        // nav('/all-grocery/all-product')
                                     })
                                 }}
                             >Save</button>

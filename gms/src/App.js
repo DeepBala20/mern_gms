@@ -15,6 +15,8 @@ import UpdateUser from './admin-panel/update_user'
 import GetAllCategory from './admin-panel/all_category'
 import AddCategory from './admin-panel/add_category'
 import UpdateCategory from './admin-panel/update_category'
+import ClientGetAllGrocery from './client-side/client_allgrocery'
+import ClientProductById from './client-side/client_getbyid'
 
 export default function App() {
   const valid = 1;
@@ -46,6 +48,8 @@ export default function App() {
             <Route path='/add-grocery' element={<Product/>}></Route>
             <Route path='/update-grocery/:id' element={<UpdateProduct/>}></Route>
             <Route path='/update-category/:id' element={<UpdateCategory/>}></Route>
+            <Route path='/client-all-product' element={<ClientGetAllGrocery/>}></Route>
+            <Route path='/client-all-product/:id' element={<ClientProductById/>}></Route>
           </Routes>
       </BrowserRouter>
     )

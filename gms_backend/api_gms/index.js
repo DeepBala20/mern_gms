@@ -7,6 +7,7 @@ const cors = require('cors');
 const GmsUser = require('./models/gmsUser');
 const GmsGroce = require('./models/gmsGroce');
 const Category = require('./models/category');
+const cart = require('./models/cart');
 mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mongodb.net/?retryWrites=true&w=majority")
 .then(
     ()=>{
@@ -78,6 +79,57 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
             await grocery.save()
             res.send(grocery)
         });
+    //------------------------------------------------------carts.....................
+        //cart
+                    //add to cart
+                    app.post('/cart/add',async(req,res)=>{
+                            const carts = new cart({
+                                cartid:req.body.cartid,
+                                userid:req.body.userid,
+                                product:req.body.product
+                            })
+                            await carts.save()
+                            res.send(carts)
+                    })
+
+                    //list all items
+                    app.get('/cart',async(req,res)=>{
+                        const cartitems = await cart.find()
+                        res.send(cartitems);
+                    })
+
+                    //list get by userid
+                    app.get('/cart/:id',async(req,res)=>{
+                        const cartitemsbyuser = await cart.find({userid:{$eq:req.params.id}}).then((result)=>{
+                            res.send(result)
+                        }).catch((err)=>{res.send(err)})
+                        
+                    })
+
+                    //clear cart
+                    app.delete('/clearcart/:id',(req,res)=>{
+                            cart.deleteMany(
+                                {userid:{ $eq : req.params.id}}
+                            ).then(
+                                (result)=>{console.log("deleted records:",result.deletedCount)}
+                            ).catch(
+                                (err)=>{console.log(err)}
+                            )
+                            res.send("your cart is clear!");
+                    })
+
+                    //delete one item
+                    app.delete('/cart/:id',async (req,res)=>{
+                            try{
+                                item = await cart.findOne({cartid:req.params.id})
+                                console.log(item)
+                                await item.deleteOne()
+                                res.send(item)
+                            }catch{
+                                res.status(404)
+                                res.send({error: "cart item Not Exists!"})
+                            }
+                    })
 
         //add category
         app.post('/category/add',async(req,res)=>{

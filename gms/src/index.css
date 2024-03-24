@@ -264,6 +264,14 @@ body{
     box-shadow: var(--box-shadow);
 }
 
+.box h1{
+    color: black;
+    font-size: xx-large;
+    margin-top: 20px;
+    font-style: italic;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
 .box-cont .box:hover{
     box-shadow: 1px 1px 10px 5px #008080;
 }

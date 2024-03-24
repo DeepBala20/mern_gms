@@ -51,10 +51,11 @@ function AddCategory(){
                                             headers:{"content-type":"application/json"}
                                         })
                                     .then((res)=>{
-                                        nav('/all-category')
+                                        // nav('/all-category')
                                     })
                                 }}
                             >Save</button>
+                            <button onClick={()=>{nav('/admin')}} className="btns float-end"  >back</button>
                     </div>
                     </form>
                 </div>

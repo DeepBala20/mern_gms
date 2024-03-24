@@ -3,6 +3,8 @@ import Header from '../components/Header'
 import Features from './Features'
 import Homeproduct from './Homeproduct'
 import ProdCategory from '../components/Prod_Category'
+import ReviewPage from './review'
+import Footer from './footer'
 
 export default function Home() {
   return (
@@ -13,9 +15,10 @@ export default function Home() {
       A grocery store is another form of retailing, primarily focusing on selling food, along with non-food household products, such as bathroom or cleaning products, to their consumers. Generally, most grocery stores will carry canned items, fish, dairy products, raw and prepared meats, baked products, fresh and frozen fruits and vegetables, and many different snacks.1 Larger grocery stores, also known as supermarkets, can carry non-food products, such as clothing and household items due to the immense amount of space they occupy and their large profit allowing them to reach a more diverse consumer market, also allowing for consumers to find all their needs in one area.  Depending on their geographic concentration, grocery stores will vary in size and products they will carry to fit and satisfy their consumer’s needs.  Some examples of grocery stores or supermarket that excel in this category are Loblaw’s, Metro and Sobeys.
       </p>
     </div>
-    <Features/>
+    <Features />
     <Homeproduct/>
-    <ProdCategory/>
+    <ReviewPage/>
+    <Footer/>
 
 
 

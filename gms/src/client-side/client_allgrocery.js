@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-export default function Homeproduct(){
+import { Link } from "react-router-dom";
+
+export default function ClientGetAllGrocery(){
     const [product,setProduct] = useState([]);
     const api = "http://localhost:3333/grocery/";
     const nav =useNavigate();
@@ -10,14 +11,13 @@ export default function Homeproduct(){
             fetch(api)
             .then(res=>res.json())
             .then(res=>setProduct(res))
-        },[]
+        },
     )
-
 
     const formattedGrocery  = 
         product.map((val)=>{
-            return <div className="col-3 " style={{height:"450px",margin:"30px",width:"250px"}}>
-                        <div className="allproductbox h-100 w-100" style={{float:"left"}}>
+            return <div className="col-3 mx-5" style={{height:"600px",margin:"30px"}}>
+                        <div className="allproductbox " style={{float:"left"}}>
                             <div className="feature-img"><img src={val.img}></img></div>
                             <h1>{val.pname}</h1>
                             <div className="price">{val.price}</div>
@@ -31,31 +31,13 @@ export default function Homeproduct(){
                         </div>
                     </div>
         })
-    
+
     return(
-        <section className="products" id="products">
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-
-            <h1 className="heading">Trending <span className="bg-teal-900 m-4 mt-24">Products</span></h1>
-            
-            <div className="product-slider overflow-x-scroll overflow-y-hidden ms-36 me-36">
-                <div className="wrapper">
-                    
-                {formattedGrocery}
-
-
-                </div>
-            </div> 
-            
-            <Link to={''} className="btns float-end me-20">View More Products..</Link>
-            
-            <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-        </section>
+        <>  <div>
+            <div className="row">
+            {formattedGrocery}
+            </div>
+            </div>
+        </>
     )
 }
