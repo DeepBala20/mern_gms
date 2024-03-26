@@ -17,21 +17,26 @@ import AddCategory from './admin-panel/add_category'
 import UpdateCategory from './admin-panel/update_category'
 import ClientGetAllGrocery from './client-side/client_allgrocery'
 import ClientProductById from './client-side/client_getbyid'
+import { GlobalProvider } from './components/GlobalContext'
+import Cart from './components/Cart'
 
 export default function App() {
   const valid = 1;
   if(valid == 0){
     return (
+      <GlobalProvider>
       <BrowserRouter>
           <Routes>
             <Route path='/admin' element={<Admin_home/>}></Route>
             <Route path='/all-grocery' element={<All_grocery/>}></Route>
           </Routes>
       </BrowserRouter>
+      </GlobalProvider>
     )
   }
   else{
     return(
+      <GlobalProvider>
     <BrowserRouter>
           <Routes>
             <Route path='/' element={<Home/>} />
@@ -50,8 +55,10 @@ export default function App() {
             <Route path='/update-category/:id' element={<UpdateCategory/>}></Route>
             <Route path='/client-all-product' element={<ClientGetAllGrocery/>}></Route>
             <Route path='/client-all-product/:id' element={<ClientProductById/>}></Route>
+            <Route path='/cart' element={<Cart/>}></Route>
           </Routes>
       </BrowserRouter>
+      </GlobalProvider>
     )
   }
   

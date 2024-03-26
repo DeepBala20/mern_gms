@@ -114,20 +114,15 @@ body{
 
 .shopping-cart{
     border: 1px solid;
-    position: absolute;
-    top: 110%;
-    right: -110%;
     padding: 1rem;
+    margin: 10%;
     border-radius: .5rem;
     box-shadow: var(--box-shadow);
-    width: 30rem;
+    width:80%;
     background-color: #fff;
 }
 
-.shopping-cart.active{
-    right: 2rem;
-    transition: .4s linear;
-}
+
 
 #sign-in_page{
     position: absolute;
@@ -139,6 +134,20 @@ body{
     box-shadow: var(--box-shadow);
 }
 #sign-in_page.active{
+    top:45%;
+    transition: .5s linear;
+}
+
+#clnt_sign-in_page{
+    position: absolute;
+    top: -2000%;
+    right: 0rem;
+    /* top: 45%; */
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+}
+#clnt_sign-in_page.active{
     top:45%;
     transition: .5s linear;
 }

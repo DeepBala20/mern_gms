@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useGlobal } from "../components/GlobalContext";
+import Swal from "sweetalert2";
+
 
 export default function ClientGetAllGrocery(){
+  const { globalVariable, setGlobalVariable } = useGlobal();
+
     const [product,setProduct] = useState([]);
     const api = "http://localhost:3333/grocery/";
+    const cartapi = "http://localhost:3333/cart/add";
     const nav =useNavigate();
     useEffect(
         ()=>{
@@ -26,7 +32,28 @@ export default function ClientGetAllGrocery(){
                                 <button onClick={()=>{
                                     nav('/client-all-product/'+val.pid);
                                 }} className="btns w-1/3 h-20 " style={{padding:"5px 15px"}}>more details...</button>
-                                <Link onClick={()=>{}} className="btns w-1/3 h-20 " style={{padding:"5px 15px"}}>Add To Cart</Link>
+                                <Link onClick={()=>{
+                                    console.log(globalVariable)
+                                    fetch(cartapi,{
+                                        method:"POST",
+                                        body:JSON.stringify({"userid":Number(globalVariable),"product":{
+                                            "pid":val.pid,
+                                            "pname":val.pname,
+                                            "price":val.price,
+                                            "category":val.category,
+                                            "img":val.img
+                                        }}),
+                                        headers:{"content-type":"application/json"}
+                                    }).then(
+                                        Swal.fire({
+                                                      // position: "top-end",
+                                                      icon: "success",
+                                                      title: "Product Added to Cart Successfully",
+                                                      showConfirmButton: false,
+                                                      timer: 1500
+                                                    })
+                                    )
+                                }} className="btns w-1/3 h-20 " style={{padding:"5px 15px"}}>Add To Cart</Link>
                             </div>
                         </div>
                     </div>
@@ -38,6 +65,8 @@ export default function ClientGetAllGrocery(){
             {formattedGrocery}
             </div>
             </div>
+            <Link to='/' className="btn btn-outline-primary">Back</Link>
+
         </>
     )
 }

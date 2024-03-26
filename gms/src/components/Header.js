@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Searchbar from "./Searchbar";
 import Cart from "./Cart";
 import Sign_in from "../pages/Sign_in";
+import Client_Sign_in from "../pages/clnt_sign_in";
 
 export default function Header() {
   return (
@@ -49,24 +50,21 @@ export default function Header() {
               document.querySelector('.search-form').classList.toggle('active');
             }
           }></div>
-          <div className="fa fa-shopping-cart" id="cart-btn" onClick={
-            ()=>{
-              document.querySelector('.shopping-cart').classList.toggle('active');
-            }
-          }></div>
+          <Link to='/cart'><div  className="fa fa-shopping-cart"></div></Link>
           <div className="fa fa-user" id="login-btn" onClick={
+            ()=>{
+              document.querySelector('#clnt_sign-in_page').classList.toggle('active');
+            }
+            }></div>
+          <div className="fa fa-cogs" id="login-btn" onClick={
             ()=>{
               document.querySelector('#sign-in_page').classList.toggle('active');
             }
             }></div>
         </div>
-        {/* <div className="search-form">
-            <input type="search" id="search-box" placeholder="search here ..."/>
-            <label for="search-box" className="fa fa-search"></label>
-        </div> */}
         <Searchbar/>
-        <Cart/>
         <Sign_in/>
+        <Client_Sign_in/>
       </div>
     </header>
   );

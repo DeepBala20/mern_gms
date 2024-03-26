@@ -3,9 +3,9 @@ import { Link,useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { useGlobal } from "../components/GlobalContext";
 
-export default function Sign_in() {
-  
-  const { globalVariable, setGlobalVariable } = useGlobal();
+export default function Client_Sign_in() {
+
+  var { globalVariable, setGlobalVariable } = useGlobal();
 
   const api = "http://localhost:3333/user/login";
   const nav = useNavigate();
@@ -20,10 +20,10 @@ export default function Sign_in() {
 
 
   return (
-    <div className="m-10 p-6 flex justify-between  bg-yellow-100" id="sign-in_page">
+    <div className="m-10 p-6 flex justify-between  bg-yellow-100" id="clnt_sign-in_page">
       <div className="w-4/6">
       <div className=" text-4xl font-bold font-mono text-center">
-        Admin
+        Client
       </div>
       <div>
         <form className=" shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -61,35 +61,65 @@ export default function Sign_in() {
 
           <div className="flex items-center justify-center">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow" type="button"
-              onClick={()=>{
-                fetch(api,{method:"POST",
-                        body:JSON.stringify(user),
-                        headers:{"content-type":"application/json"}
-                    })
-                .then((res)=>{
-                  
-                  if(res.status == 200){
-                    Swal.fire({
-                      // position: "top-end",
-                      icon: "success",
-                      title: "Login Successfully",
-                      showConfirmButton: false,
-                      timer: 1500
-                    });
-                    nav('/admin');
-                    console.log(res);
-                  }
-                  else{
-                    Swal.fire({
-                      icon: "error",
-                      title: "Oops...",
-                      text: res.message,
-                      footer: '<a href="#">Why do I have this issue?</a>'
-                    });
-                    nav('/');
-                  }
-                })
-            }}
+            //   onClick={()=>{
+            //     fetch(api,{method:"POST",
+            //             body:JSON.stringify(user),
+            //             headers:{"content-type":"application/json"}
+            //         })
+            //     .then((res)=>{
+            //       if(res.status == 200){
+            //         Swal.fire({
+            //           // position: "top-end",
+            //           icon: "success",
+            //           title: "Login Successfully",
+            //           showConfirmButton: false,
+            //           timer: 1500
+            //         });
+            //         console.log(res.body)
+            //         nav('/');
+            //       }
+            //       else{
+            //         Swal.fire({
+            //           icon: "error",
+            //           title: "Oops...",
+            //           text: res.message,
+            //           footer: '<a href="#">Why do I have this issue?</a>'
+            //         });
+            //         nav('/');
+            //       }
+            //     })
+            // }}
+            onClick={() => {
+              fetch(api, {
+                  method: "POST",
+                  body: JSON.stringify(user),
+                  headers: { "content-type": "application/json" }
+              })
+                  .then((res) => res.json())
+                  .then((data) => {
+                      if (data.user) {
+                          Swal.fire({
+                              icon: "success",
+                              title: "Login Successfully",
+                              showConfirmButton: false,
+                              timer: 1500
+                          });
+                          console.log('andar ka mamla')
+                          console.log(data.user.uid);
+                          setGlobalVariable(globalVariable=data.user.uid);
+                          console.log(globalVariable);
+
+                          nav('/');
+                      } else {
+                          Swal.fire({
+                              icon: "error",
+                              title: "Oops...",
+                              text: data.message,
+                              footer: '<a href="#">Why do I have this issue?</a>'
+                          });
+                      }
+                  })
+          }}
             >Sign-in</button>
           </div>
         </form>

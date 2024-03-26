@@ -83,13 +83,28 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
         //cart
                     //add to cart
                     app.post('/cart/add',async(req,res)=>{
+                        const maxCartId = await cart.findOne().sort({ cartid: -1 }).limit(1);
+
+                        if(!maxCartId){
                             const carts = new cart({
-                                cartid:req.body.cartid,
+                                cartid:1,
                                 userid:req.body.userid,
                                 product:req.body.product
                             })
                             await carts.save()
                             res.send(carts)
+                        }
+                        else{
+                            const carts = new cart({
+                                cartid:maxCartId.cartid+1,
+                                userid:req.body.userid,
+                                product:req.body.product
+                            })
+                            await carts.save()
+                            res.send(carts)
+                        }
+
+                            
                     })
 
                     //list all items
@@ -254,7 +269,10 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
             }
         
             // Return user data on successful login
-            return res.status(200).json({ message: 'Login successful', user });
+            console.log(user);
+            
+            return res.status(200).json({user});
+            
         });
     
     }
