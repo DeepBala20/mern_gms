@@ -40,7 +40,7 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
             res.send(user);
         })
       
-        //get user by id 
+        //get grocery by id 
         app.get('/grocery/:id',async (req,res)=>{
             const grocery = await GmsGroce.findOne({pid:req.params.id})
             res.send(grocery);
@@ -75,6 +75,7 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
                 price:req.body.price,
                 category:req.body.category,
                 img:req.body.img,
+                desc:req.body.desc
             })
             await grocery.save()
             res.send(grocery)
@@ -89,7 +90,8 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
                             const carts = new cart({
                                 cartid:1,
                                 userid:req.body.userid,
-                                product:req.body.product
+                                product:req.body.product,
+                                quantity:req.body.quantity
                             })
                             await carts.save()
                             res.send(carts)
@@ -98,7 +100,8 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
                             const carts = new cart({
                                 cartid:maxCartId.cartid+1,
                                 userid:req.body.userid,
-                                product:req.body.product
+                                product:req.body.product,
+                                quantity:req.body.quantity
                             })
                             await carts.save()
                             res.send(carts)
@@ -185,6 +188,7 @@ mongoose.connect("mongodb+srv://deep:gmsdeep@groceryshopmanagementsy.nqfogrn.mon
                 grocery.price=req.body.price,
                 grocery.category=req.body.category,
                 grocery.img=req.body.img,
+                grocery.desc=req.body.desc
                 await grocery.save()
                 res.send(grocery)
             }

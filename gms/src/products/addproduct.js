@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 function Product(){
 
     const nav = useNavigate();
@@ -82,6 +83,15 @@ function Product(){
                             ></input>
                     </div>
 
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-3xl font-bold mb-2">
+                        Product Description
+                        </label>
+                        <input type="text" id="uname" className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow w-11/12  bg-transparent"
+                                onChange={(e)=>{setProduct({...product, desc:e.target.value})}}
+                            ></input>
+                    </div>
+
                     <div className="flex items-center justify-evenly w-full">
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow w-1/3"  
                                 type="reset"
@@ -94,7 +104,13 @@ function Product(){
                                             headers:{"content-type":"application/json"}
                                         })
                                     .then((res)=>{
-                                        // nav('/all-grocery/all-product')
+                                        Swal.fire({
+                                            // position: "top-end",
+                                            icon: "success",
+                                            title: "Product Added to Cart Successfully",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                          })
                                     })
                                 }}
                             >Save</button>

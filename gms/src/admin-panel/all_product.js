@@ -25,8 +25,7 @@ export default function GetAllGrocery(){
                             <div className="flex justify-around">
                                 <button onClick={()=>{
                                     nav('/all-grocery/all-grocery/all-product/'+val.pid);
-                                }} className="btns w-1/3 h-20 " style={{padding:"5px 15px"}}>more details...</button>
-                                <Link onClick={()=>{}} className="btns w-1/3 h-20 " style={{padding:"5px 15px"}}>Add To Cart</Link>
+                                }} className="btns  h-20 " style={{padding:"5px 15px"}}>more details...</button>
                             </div>
                         </div>
                     </div>

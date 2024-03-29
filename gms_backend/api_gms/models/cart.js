@@ -11,7 +11,8 @@ const schema = mongoose.Schema({
     product: {
         type: gmsGroce.schema,
         ref: 'gmsGroce'
-    }
+    },
+    quantity:Number
 });
 
 module.exports = mongoose.model('Cart', schema);

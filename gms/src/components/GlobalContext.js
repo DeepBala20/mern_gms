@@ -6,7 +6,7 @@ const GlobalContext = createContext();
 
 // Create a provider component
 export const GlobalProvider = ({ children }) => {
-  const [globalVariable, setGlobalVariable] = useState('initialValue');
+  const [globalVariable, setGlobalVariable] = useState();
 
   return (
     <GlobalContext.Provider value={{ globalVariable, setGlobalVariable }}>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, json, useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 function UpdateCategory(){
 
     const nav = useNavigate();
@@ -66,7 +67,13 @@ function UpdateCategory(){
                                             headers:{"content-type":"application/json"}
                                         })
                                     .then((res)=>{
-                                        nav('/admin')
+                                        Swal.fire({
+                                            // position: "top-end",
+                                            icon: "success",
+                                            title: "Product Added to Cart Successfully",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                          })
                                     })
                                 }}
                             >update</button>

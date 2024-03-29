@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { useGlobal } from "../components/GlobalContext";
+import Header from "../components/Header";
 
 export default function Client_Sign_in() {
 
@@ -20,6 +21,11 @@ export default function Client_Sign_in() {
 
 
   return (
+    <>
+    <Header/>
+    < br></br>
+    < br></br>
+    < br></br>
     <div className="m-10 p-6 flex justify-between  bg-yellow-100" id="clnt_sign-in_page">
       <div className="w-4/6">
       <div className=" text-4xl font-bold font-mono text-center">
@@ -109,7 +115,7 @@ export default function Client_Sign_in() {
                           setGlobalVariable(globalVariable=data.user.uid);
                           console.log(globalVariable);
 
-                          nav('/');
+                          nav('/profile/'+globalVariable);
                       } else {
                           Swal.fire({
                               icon: "error",
@@ -121,6 +127,7 @@ export default function Client_Sign_in() {
                   })
           }}
             >Sign-in</button>
+            <button className="btn btn-primary ms-5" onClick={()=>{nav('/')}}>back</button>
           </div>
         </form>
       </div>
@@ -129,5 +136,6 @@ export default function Client_Sign_in() {
           <img style={{height:"100%",width:"100%"}} src="./assets/login_front.jpeg" />
       </div>
     </div>
+    </>
   );
 }

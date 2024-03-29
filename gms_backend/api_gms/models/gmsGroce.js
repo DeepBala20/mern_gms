@@ -6,6 +6,7 @@ const schema = mongoose.Schema({
     price:Number,
     category:String,
     img:String,
+    desc:String
 })
 
 module.exports = mongoose.model("Grocery",schema);

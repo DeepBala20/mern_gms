@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function UpdateProduct() {
     const nav = useNavigate();
@@ -116,6 +117,22 @@ function UpdateProduct() {
                                         });
                                     }}
                                 ></input>
+                            </div><div className="mb-4">
+                                <label className="block text-gray-700 text-3xl font-bold mb-2">
+                                    Product Description
+                                </label>
+                                <input
+                                    type="text"
+                                    value={product.desc}
+                                    id="uname"
+                                    className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow w-11/12  bg-transparent"
+                                    onChange={(e) => {
+                                        setProduct({
+                                            ...product,
+                                            desc: e.target.value,
+                                        });
+                                    }}
+                                ></input>
                             </div>
 
                             <div className="flex items-center justify-evenly w-full">
@@ -136,7 +153,13 @@ function UpdateProduct() {
                                                     "application/json",
                                             },
                                         }).then((res) => {
-                                            nav("/all-grocery/all-product");
+                                            Swal.fire({
+                                                // position: "top-end",
+                                                icon: "success",
+                                                title: "Product Added to Cart Successfully",
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                              })
                                         });
                                     }}
                                 >

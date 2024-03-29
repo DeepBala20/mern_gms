@@ -31,7 +31,7 @@ export default function Homeproduct(){
                             <div className="flex justify-around">
                                 <button onClick={()=>{
                                     nav('/client-all-product/'+val.pid);
-                                }} className="btns w-1/3 h-20 " style={{padding:"5px 15px"}}>more details...</button>
+                                }} className="btns w-2/4 h-16 " style={{padding:"2px 5px"}}>details...</button>
                                 <Link onClick={()=>{
                                     console.log(globalVariable)
                                     fetch(cartapi,{
@@ -42,7 +42,8 @@ export default function Homeproduct(){
                                             "price":val.price,
                                             "category":val.category,
                                             "img":val.img
-                                        }}),
+                                        },"quantity":1
+                                    }),
                                         headers:{"content-type":"application/json"}
                                     }).then(
                                         Swal.fire({
@@ -53,7 +54,7 @@ export default function Homeproduct(){
                                                       timer: 1500
                                                     })
                                     )
-                                }} className="btns w-1/3 h-20 " style={{padding:"5px 15px"}}>Add To Cart</Link>
+                                }} className="btns w-1/3 h-16 " style={{padding:"2px 5px"}}>AddTo Cart</Link>
                             </div>
                         </div>
                     </div>

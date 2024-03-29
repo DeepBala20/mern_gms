@@ -5,7 +5,7 @@ export default function Admin_home() {
     <div className="bg-slate-400" style={{height:"100vh"}}>
       <header className="bg-teal-900 sticky top-0">
         <div className="flex justify-between items-center mx-auto px-10 py-3">
-          <Link to="/admin">
+          <Link to="/">
             <h1 className="flex flex-wrap font-bold items-baseline">
               <span className="text-slate-300 text-4xl">Bala's </span>
               <span className="text-slate-100 text-2xl"> Grocery</span>
